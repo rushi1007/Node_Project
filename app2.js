@@ -13,21 +13,6 @@ app.use(express.json());
 //MongoDB connection string
 const connectionString = "mongodb+srv://rushipatel100720:admin1234@cluster0.keduksp.mongodb.net/sample_mflix/?retryWrites=true&w=majority";
 
-
-// //calling promise-based functions
-// const data=
-//   {
-//     "plot": "A greedy tycoon decides, on a whim, to corner the world market in wheat. This doubles the price of bread, forcing the grain's producers into charity lines and further into poverty. The film...",
-    
-//     "runtime": 14,
-//     "title":"Assignment",
-//     "directors":["Samip", "Meet"],
-//     "type": "movie"
-//   };
-
-// db.addNewMovie(data);
-// console.log('Movie data added');
-
 //routes
 app.get('/', (req, res) => { //just for checking
     res.send('Hello Rushi') 
