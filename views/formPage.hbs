@@ -1,0 +1,29 @@
+<!-- formPage.handlebars -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/style.css">
+  <title>Movie Form Page</title>
+</head>
+<body>
+
+  <h1>Movie Form Page</h1>
+  
+  <form method="post" action="/formPage">
+    <label for="page">Page:</label>
+    <input type="number" id="page" name="page" value="{{ page }}">
+    <br>
+    <label for="perPage">Per Page:</label>
+    <input type="number" id="perPage" name="perPage" value="{{ perPage }}">
+    <br>
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" value="{{ title }}">
+    <br>
+    <button type="submit">Submit</button>
+  </form>
+
+</body>
+</html>
