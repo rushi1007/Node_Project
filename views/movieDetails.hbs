@@ -1,0 +1,9 @@
+<!-- movieDetails.hbs -->
+
+<h1>{{ movie.title }}</h1>
+<!-- ... other movie details ... -->
+
+<form action="/favorites/add" method="post">
+  <input type="hidden" name="movieId" value="{{ movie._id }}">
+  <button type="submit">Add to Favorites</button>
+</form>

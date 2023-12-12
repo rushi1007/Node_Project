@@ -1,0 +1,80 @@
+<!-- views/protectedRoute.hbs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Protected Route</title>
+    <style>
+    
+
+
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    </style>
+</head>
+<body>
+
+  <h1>Protected Route</h1>
+  <p>Welcome, {{ username }}!</p>
+  <a href="/favorites">View Favorites</a>
+  <h1>Sample movie Data</h1>
+
+  <table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Plot</th>
+      <th>Genres</th>
+      <th>Cast</th>
+      <th>Poster</th>
+      <th>Directors</th>
+      <th>Rated</th>
+      <th>Year</th>
+      <th>Countries</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#if data.length}}
+
+    {{#each data}}
+      <tr>
+        <td>{{this.title}}</td>
+        <td>{{this.plot}}</td>
+        <td>{{this.genres}}</td>
+        <td>{{this.cast}}</td>
+        <td><img src="{{poster}}" style="max-width: 100px; max-height: 150px;"></td>
+        <td>{{this.directors}}</td>
+        <td>{{this.rated}}</td>
+        <td>{{this.year}}</td>
+        <td>{{this.countries}}</td>
+      </tr>
+    {{/each}}
+    {{else}}
+        <p>No data available</p>
+    {{/if}}
+  </tbody>
+</table>
+</body>
+</html>

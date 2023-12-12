@@ -1,0 +1,12 @@
+<!-- favorites.hbs -->
+
+<h1>Favorites</h1>
+{{#if favorites.length}}
+  <ul>
+    {{#each favorites}}
+      <li>{{this.title}}</li>
+    {{/each}}
+  </ul>
+{{else}}
+  <p>No favorites yet. Add some movies!</p>
+{{/if}}

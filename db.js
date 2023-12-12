@@ -1,7 +1,25 @@
 const mongoose = require('mongoose');
 const Movie = require('./models/Movie');
+const customHelpers = require('./custom_helper');
 
 Movie.collection.createIndex({ title: 1 });
+
+const getUserData = async (userId) => {
+  
+  const usersData = [
+    { userId: 'rushi', data: '1234' },
+    { userId: 'rushi1', data: '1234' },
+    // ... (more user data)
+  ];
+
+  const userData = usersData.find(user => user.userId === userId);
+  return userData ? userData.data : null;
+};
+
+module.exports = {
+  
+  getUserData: getUserData, // Add this line
+};
 
 let isConnected;
 
@@ -43,23 +61,23 @@ module.exports = {
   });
 },
 
-  getAllMovies: (page, perPage, title) => {
-    return new Promise((resolve, reject) => {
-      const query = title ? { title } : {};
-  
-      Movie.find(query)
-        .sort({ Movie_id: 1 })
-        .skip((page - 1) * perPage)
-        .limit(perPage)
-        .lean() // Add this line to return plain JavaScript objects instead of Mongoose documents
-        .then((movies) => {
+getAllMovies: (page, perPage, title) => {
+  return new Promise((resolve, reject) => {
+    const query = title ? { title } : {};
 
-        })
-        .catch((err) => {
-          reject(err);
-        });
-    });
-  },
+    Movie.find(query)
+      .sort({ Movie_id: 1 })
+      .skip((page - 1) * perPage)
+      .limit(perPage)
+      .lean()
+      .then((movies) => {
+        resolve(movies);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+},
 
   getMovieById: (id) => {
     return new Promise((resolve, reject) => {
@@ -103,6 +121,45 @@ module.exports = {
     });
   },
 
+  getAllData: (limit = 200) => {
+    return new Promise((resolve, reject) => {
+      Movie.find({})
+        .limit(limit)
+        .lean()
+        .then((limitedData) => {
+          console.log(`Limited Data (up to ${limit} records):`, limitedData);
+          resolve(limitedData);
+        })
+        .catch((err) => {
+          console.error(err);
+          reject(err);
+        });
+    });
+  },
+
+  searchMovies: (country, type, language, limit = 200) => {
+    return new Promise((resolve, reject) => {
+      // Build the query based on the provided search parameters
+      const query = {
+        'countries.0': country,
+        type,
+        'languages.0': language,
+      };
+  
+      // Use Mongoose to find movies that match the query
+      Movie.find(query)
+        .limit(limit)
+        .lean()
+        .then((searchResults) => {
+          console.log(`Search Results (up to ${limit} records):`, searchResults);
+          resolve(searchResults);
+        })
+        .catch((err) => {
+          console.error(err);
+          reject(err);
+        });
+    });
+  },
 
   isConnected: () => isConnected,
   

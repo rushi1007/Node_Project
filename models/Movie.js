@@ -42,6 +42,13 @@ const movieSchema = new mongoose.Schema({
     lastUpdated: Date,
   },
   num_mflix_comments: Number,
+  reviews: [
+    {
+      username: String,
+      rating: { type: Number, min: 1, max: 5 },
+      comment: String,
+    },
+  ],
 });
 
 const Movie = mongoose.model('Movie', movieSchema);

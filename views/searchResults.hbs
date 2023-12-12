@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Results</title>
+  <style>
+    
+ h1 {
+      text-align: center;
+    }
+
+    nav {
+      padding: 10px;
+      background-color: #70bab5;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around; /* Adjust this based on your preference */
+    }
+
+    .op {
+      width: 300px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 5px;
+      overflow: hidden; /* Ensure the content doesn't overflow */
+    }
+
+    img {
+      max-width: 100%;
+      max-height: 150px;
+      display: block;
+      margin: 0 auto 10px;
+      border-radius: 5px;
+    }
+
+    h2 {
+      color: #007bff;
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin: 0 0 10px;
+      color: #333;
+    }
+
+    /* Optional: Style for the "No movies found" message */
+    p.no-movies {
+      color: #555;
+      text-align: center;
+      font-style: italic;
+    }
+  
+  </style>
+</head>
+
+<body>
+  <h1>Movie Search Results</h1>
+  {{#if data.length}}
+    <ul>
+      {{#each data}}
+        <div class="op">
+          <img src="{{poster}}" style="max-width: 100%; max-height: 150px;">
+          <h2>Title: {{title}}</h2>
+          <p>Fullplot: {{fullplot}}</p>
+          <p>Plot: {{plot}}</p>
+          <p>Released: {{released}}</p>
+          <p>Year: {{year}}</p>
+          <p>Type: {{type}}</p>
+          <p>Writer: {{writers}}</p>
+        </div>
+      {{/each}}
+    </ul>
+  {{else}}
+    <p class="no-movies">No movies found</p>
+  {{/if}}
+</body>
+</html>
